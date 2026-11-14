@@ -1,0 +1,68 @@
+[
+  {
+    "source_id": "PV-NAT-2025-007",
+    "kind": "notice",
+    "url": "https://www.nea.gov.cn/20250123/112c5b199c5f45dd8e7ac93c9f5e4eaf/c.html",
+    "raw_path": "raw/PV-NAT-2025-007__notice.html",
+    "raw_bytes": 9434,
+    "raw_sha256": "d2e6c69f192c106a9f1730424146a891e595c4ab11819fb9393988457a626d88",
+    "fetched_at": "2026-11-11T19:12:27+08:00",
+    "status": 200,
+    "note": "通知页，正文在附件 .doc"
+  },
+  {
+    "source_id": "PV-NAT-2025-007-ATTACH",
+    "kind": "measure_fulltext",
+    "url": "https://www.nea.gov.cn/20250123/112c5b199c5f45dd8e7ac93c9f5e4eaf/20250123112c5b199c5f45dd8e7ac93c9f5e4eaf_010446cd75b7d649969599bba99df7d0dd.doc",
+    "raw_path": "raw/PV-NAT-2025-007__measure.doc",
+    "raw_bytes": 105472,
+    "raw_sha256": "9e05e863abc95b99b68409df4f8e482d85541204e8c427c89a2c1efdd7675a03",
+    "fetched_at": "2026-11-11T19:12:27+08:00",
+    "status": 200,
+    "note": "通知页附件 .doc（URL 从通知页解析）"
+  },
+  {
+    "source_id": "PV-EXPLAIN-20250123",
+    "kind": "official_explain",
+    "url": "https://www.nea.gov.cn/20250123/d38e5436b4d04159863ddbc10a6ede10/c.html",
+    "raw_path": "raw/PV-EXPLAIN-20250123__explain.html",
+    "raw_bytes": 21789,
+    "raw_sha256": "cc7c4a7f7243b6c99f7b3f1d545175d6daaea5475c49c4473ade10f1bf827774",
+    "fetched_at": "2026-11-11T19:12:28+08:00",
+    "status": 200,
+    "note": "政策解读"
+  },
+  {
+    "source_id": "PV-FAQ-20250411",
+    "kind": "official_faq",
+    "url": "https://www.nea.gov.cn/20250411/dca28f9186e848dda1d690d192fa50f8/20250411dca28f9186e848dda1d690d192fa50f8_113000de00999043e8a7fe4446dd6d97d8.pdf",
+    "raw_path": "raw/PV-FAQ-20250411__faq2025.pdf",
+    "raw_bytes": 482414,
+    "raw_sha256": "d2263d2b7929f86a556993a5d08aa40b897495526cb9bceb5f3e33e6be949838",
+    "fetched_at": "2026-11-11T19:12:29+08:00",
+    "status": 200,
+    "note": "问答 2025 年版 PDF"
+  },
+  {
+    "source_id": "PV-CASE-20250402",
+    "kind": "consult_case",
+    "url": "https://www.nea.gov.cn/20250402/1c56ebc576504b4e8acb2ae9f5a3ee9b/c.html",
+    "raw_path": "raw/PV-CASE-20250402__case.html",
+    "raw_bytes": 10755,
+    "raw_sha256": "5abc8d99e906320b32f7ef050a100c1f52c2e6c18ef7bfadc2993984ed9891e8",
+    "fetched_at": "2026-11-11T19:12:30+08:00",
+    "status": 200,
+    "note": "公开咨询案例，eval_only"
+  },
+  {
+    "source_id": "ALT-MOFCOM-PV-NAT-2025-007",
+    "kind": "reprint_fulltext",
+    "url": "https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=101798",
+    "raw_path": "raw/ALT-MOFCOM-PV-NAT-2025-007.html",
+    "raw_bytes": 38296,
+    "raw_sha256": "0612c8a07e0efb499f712d05d5f7b371982ed15fe4aebf5ade10db923f1c8679",
+    "fetched_at": "2026-11-11T19:12:33+08:00",
+    "status": 200,
+    "note": "商务部转载全文，仅用于交叉校验 .doc 转换完整性"
+  }
+]

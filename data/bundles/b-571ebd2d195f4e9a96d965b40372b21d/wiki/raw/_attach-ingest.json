@@ -1,0 +1,12 @@
+{
+ "source_id": "PV-NAT-2025-007-ATTACH",
+ "parent_source_id": "PV-NAT-2025-007",
+ "canonical_url": "https://www.nea.gov.cn/20250123/112c5b199c5f45dd8e7ac93c9f5e4eaf/20250123112c5b199c5f45dd8e7ac93c9f5e4eaf_010446cd75b7d649969599bba99df7d0dd.doc",
+ "http_status": 200,
+ "content_type": "application/msword",
+ "retrieved_at": "2026-11-11T15:31:35+08:00",
+ "bytes": 105472,
+ "raw_sha256": "9e05e863abc95b99b68409df4f8e482d85541204e8c427c89a2c1efdd7675a03",
+ "raw_path": "raw\\PV-NAT-2025-007__measure.doc",
+ "detected_format": "ole2"
+}

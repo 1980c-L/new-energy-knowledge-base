@@ -1,0 +1,321 @@
+app:
+  description: 分布式光伏政策问答｜带出处的对话入口（本地确定性检索，不经云模型生成）
+  icon: ⚡
+  icon_background: '#E4E7FF'
+  icon_type: emoji
+  mode: advanced-chat
+  name: 新能源知识库 · 对话版
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+site:
+  chat_color_theme: null
+  chat_color_theme_inverted: false
+  copyright: null
+  custom_disclaimer: ''
+  default_language: zh-Hans
+  description: 分布式光伏政策问答，每条回答都带可回查的原文出处
+  icon: ⚡
+  icon_background: '#E4E7FF'
+  icon_type: emoji
+  input_placeholder: 例如：分布式光伏三种上网模式有什么区别？
+  privacy_policy: null
+  show_workflow_steps: false
+  title: 新能源知识库 · 对话版
+  use_icon_as_answer_icon: false
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: 本地工具专用密钥；导入后需手动填入，不进 DSL
+    id: 176-energy-key
+    name: ENERGY176_KEY
+    selector:
+    - env
+    - ENERGY176_KEY
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: |-
+      你好，我是分布式光伏政策助手。
+
+      我只回答冻结资料里确实写着的内容，每条都给出处。资料没写的、或我这版没覆盖的，我会直接说，不猜。
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 分布式光伏三种上网模式有什么区别？
+    - 并网可以附加保证电网安全必要技术要求吗？
+    - 分布式光伏项目取得备案文件后可以直接开工吗？
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: template-transform
+      id: chat_start-source-chat_prepare-target
+      source: chat_start
+      sourceHandle: source
+      target: chat_prepare
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: http-request
+      id: chat_prepare-source-chat_query-target
+      source: chat_prepare
+      sourceHandle: source
+      target: chat_query
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: template-transform
+      id: chat_query-source-chat_render-target
+      source: chat_query
+      sourceHandle: source
+      target: chat_render
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: answer
+      id: chat_render-source-chat_answer-target
+      source: chat_render
+      sourceHandle: source
+      target: chat_answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 90
+      id: chat_start
+      position:
+        x: 0
+        y: 240
+      positionAbsolute:
+        x: 0
+        y: 240
+      selected: false
+      type: custom
+      width: 244
+      zIndex: 0
+    - data:
+        desc: ''
+        selected: false
+        template: |-
+          {%- set q = query -%}
+          {%- set m = 'knowledge' -%}
+          {%- if q[:3] == '原文：' or q[:3] == '原文:' -%}{%- set m = 'raw' -%}{%- set q = q[3:] -%}{%- endif -%}
+          {"question":{{ q|trim|tojson }},"mode":{{ m|tojson }}}
+        title: 组装本地请求
+        type: template-transform
+        variables:
+        - value_selector:
+          - chat_start
+          - sys.query
+          value_type: string
+          variable: query
+      height: 110
+      id: chat_prepare
+      position:
+        x: 320
+        y: 240
+      positionAbsolute:
+        x: 320
+        y: 240
+      selected: false
+      type: custom
+      width: 244
+      zIndex: 0
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.ENERGY176_KEY#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - file: []
+            key: ''
+            type: text
+            value: '{{#chat_prepare.output#}}'
+          type: raw-text
+        default_value:
+        - key: body
+          type: string
+          value: ''
+        - key: status_code
+          type: number
+          value: 0
+        desc: ''
+        error_strategy: default-value
+        headers: 'Content-Type:application/json'
+        method: POST
+        params: ''
+        retry_config:
+          enabled: false
+          max_retries: 0
+          retry_interval: 1000
+        selected: false
+        timeout:
+          connect: 5
+          read: 120
+          write: 10
+        title: 查询本地知识库
+        type: http-request
+        url: http://rag-energy176:8080/dify-query
+      height: 130
+      id: chat_query
+      position:
+        x: 640
+        y: 240
+      positionAbsolute:
+        x: 640
+        y: 240
+      selected: false
+      type: custom
+      width: 244
+      zIndex: 0
+    - data:
+        desc: ''
+        selected: false
+        template: |-
+          {%- if status_code == 200 and body -%}
+          {%- set ns = namespace(st='', ver='', top='', ev='', note='') -%}
+          {%- set head = body.split('\n') | select | list -%}
+          {%- for line in head -%}
+          {%- if line[:3] == '状态：' -%}{%- set ns.st = line[3:] -%}{%- endif -%}
+          {%- if line[:5] == '资料版本：' -%}{%- set ns.ver = line[5:] -%}{%- endif -%}
+          {%- if line[:6] == '最相关原文：' -%}{%- set ns.top = line[6:] -%}{%- endif -%}
+          {%- if line[:13] == '证据（候选，供人工核对）：' -%}{%- set ns.ev = line[13:] -%}{%- endif -%}
+          {%- if line[:8] == '未提供项目结构化' or line[:6] == '本轮给候选证据' -%}{%- set ns.note = line -%}{%- endif -%}
+          {%- endfor -%}
+          {%- set zh = {'materials_ready':'已找到候选材料（需人工核对）','supported':'材料支持该结论','insufficient':'字段或判据不足，不能下结论','out_of_scope':'本版未覆盖该类问题','no_match':'本次检索无匹配（不等于无规定）','official_unclear':'所见材料明确未说明','conflict':'材料之间存在冲突','source_error':'来源不可用，已拒用中间结果'} -%}
+          {%- set blocks = body.split('\n[ontology:') -%}
+          {%- set total = blocks | count - 1 -%}
+          {%- set rows = blocks[1:] -%}
+          {%- if rows | count > 4 -%}{%- set rows = rows[:4] -%}{%- endif -%}
+          **{{ zh.get(ns.st, ns.st) }}** · `{{ ns.st }}`
+
+          资料版本 `{{ ns.ver[:12] }}` · 命中 {{ total }} 段原文{% if total > 4 %}，展示前 4 段{% endif %}{% if ns.note %}
+          *{{ ns.note }}*{% endif %}
+          {% if ns.top %}
+          **与问题最接近的一条**
+
+          {{ ns.top }}
+          {% endif %}
+          {% if ns.ev %}
+          **证据清单（可逐条回查原文）**
+
+          {% for e in ns.ev.split('；') if e.strip() %}- {{ e.strip().replace('#clause=', ' · ').replace('#section=', ' · ').replace('#qa=', ' · ').replace('（normative）', '｜规范条款').replace('（official_explanation）', '｜官方解读').replace('（official_qa）', '｜官方问答').replace('（faq）', '｜官方问答').replace('（local_rule）', '｜地方规则') }}
+          {% endfor %}{% endif %}
+          {% for b in rows %}
+          {%- set bl = b.split('\n') | select | list -%}
+          {%- set ref = bl[0].rstrip(']') -%}
+          {%- set src = bl[-2] if bl | count > 2 else '' -%}
+          {%- set loc = bl[-1] if bl | count > 2 else '' -%}
+          {%- set text = (bl[1:-2] | join(' ')) if bl | count > 2 else '' -%}
+          {%- set title = src.split('[')[1].split(']')[0] if '[' in src and ']' in src else '' -%}
+          {%- set sid = ref.split('#')[0] -%}
+          {%- set point = ref.split('#')[1] if '#' in ref else '' -%}
+          {%- set point = point.replace('clause=', '').replace('section=', '').replace('qa=', '').replace('para=', '') -%}
+
+          ---
+
+          **{{ loop.index }}. {{ title or sid }}**
+
+          `{{ sid }}` · 定位 {{ point or loc.replace('定位：', '').split('；')[0] }}
+          {% if text %}
+          > {{ text[:220] }}{% if text | length > 220 %}…{% endif %}
+          {% endif %}
+          {% endfor %}
+
+          ---
+
+          *以上为冻结资料原文与主张，未联网核实现行政策效力。*
+          {%- else -%}
+          **本地知识服务暂不可用，本次没有取得可靠结果。**
+
+          没有结果不等于没有规定。请确认本地检索服务已启动后重试。
+          {%- endif -%}
+        title: 渲染回答
+        type: template-transform
+        variables:
+        - value_selector:
+          - chat_query
+          - body
+          value_type: string
+          variable: body
+        - value_selector:
+          - chat_query
+          - status_code
+          value_type: number
+          variable: status_code
+      height: 180
+      id: chat_render
+      position:
+        x: 960
+        y: 240
+      positionAbsolute:
+        x: 960
+        y: 240
+      selected: false
+      type: custom
+      width: 244
+      zIndex: 0
+    - data:
+        answer: '{{#chat_render.output#}}'
+        desc: ''
+        selected: false
+        title: 回答
+        type: answer
+        variables: []
+      height: 110
+      id: chat_answer
+      position:
+        x: 1280
+        y: 240
+      positionAbsolute:
+        x: 1280
+        y: 240
+      selected: false
+      type: custom
+      width: 244
+      zIndex: 0
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.7

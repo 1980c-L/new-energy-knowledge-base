@@ -1,0 +1,20 @@
+{
+ "source_id": "PV-NAT-2025-007-ATTACH",
+ "text_path": "normalized\\PV-NAT-2025-007__measure.txt",
+ "text_bytes": 24332,
+ "chars": 8280,
+ "nonempty_lines": 85,
+ "chapters": [
+  "第一章  总  则",
+  "第二章  行业管理",
+  "第三章  备案管理",
+  "第四章  建设管理",
+  "第五章  电网接入",
+  "第六章  运行管理",
+  "第七章  附  则"
+ ],
+ "article_tokens": 46,
+ "unique_article_tokens": 43,
+ "converted_at": "2026-11-11T15:32:08+08:00",
+ "tool": "Microsoft Word COM (SaveAs2 wdFormatUnicodeText)"
+}

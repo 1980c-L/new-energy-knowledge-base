@@ -1,0 +1,10 @@
+{
+  "alt_source_id": "ALT-MOFCOM-PV-NAT-2025-007",
+  "clauses_compared": 43,
+  "compare_method": "去空白后比对，并把弯引号/直引号视为等价（仅排版差异）",
+  "doc_source_id": "PV-NAT-2025-007-ATTACH",
+  "first_sentence_equal": 43,
+  "first_sentence_mismatch_labels": [],
+  "full_text_equal": 43,
+  "full_text_mismatch_labels": []
+}

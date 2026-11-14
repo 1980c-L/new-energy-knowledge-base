@@ -1,0 +1,54 @@
+[
+ {
+  "source_id": "PV-NAT-2025-007",
+  "role": "build",
+  "canonical_url": "https://www.nea.gov.cn/20250123/112c5b199c5f45dd8e7ac93c9f5e4eaf/c.html",
+  "fetched_url": "https://www.nea.gov.cn/20250123/112c5b199c5f45dd8e7ac93c9f5e4eaf/c.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "retrieved_at": "2026-11-11T15:22:59+08:00",
+  "bytes": 9434,
+  "raw_sha256": "d2e6c69f192c106a9f1730424146a891e595c4ab11819fb9393988457a626d88",
+  "raw_path": "raw\\PV-NAT-2025-007__notice.html",
+  "fetch_ok": true
+ },
+ {
+  "source_id": "PV-EXPLAIN-20250123",
+  "role": "build",
+  "canonical_url": "https://www.nea.gov.cn/20250123/d38e5436b4d04159863ddbc10a6ede10/c.html",
+  "fetched_url": "https://www.nea.gov.cn/20250123/d38e5436b4d04159863ddbc10a6ede10/c.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "retrieved_at": "2026-11-11T15:23:00+08:00",
+  "bytes": 21789,
+  "raw_sha256": "cc7c4a7f7243b6c99f7b3f1d545175d6daaea5475c49c4473ade10f1bf827774",
+  "raw_path": "raw\\PV-EXPLAIN-20250123__explain.html",
+  "fetch_ok": true
+ },
+ {
+  "source_id": "PV-FAQ-20250411",
+  "role": "build",
+  "canonical_url": "https://www.nea.gov.cn/20250411/dca28f9186e848dda1d690d192fa50f8/20250411dca28f9186e848dda1d690d192fa50f8_113000de00999043e8a7fe4446dd6d97d8.pdf",
+  "fetched_url": "https://www.nea.gov.cn/20250411/dca28f9186e848dda1d690d192fa50f8/20250411dca28f9186e848dda1d690d192fa50f8_113000de00999043e8a7fe4446dd6d97d8.pdf",
+  "http_status": 200,
+  "content_type": "application/pdf",
+  "retrieved_at": "2026-11-11T15:23:11+08:00",
+  "bytes": 482414,
+  "raw_sha256": "d2263d2b7929f86a556993a5d08aa40b897495526cb9bceb5f3e33e6be949838",
+  "raw_path": "raw\\PV-FAQ-20250411__faq2025.pdf",
+  "fetch_ok": true
+ },
+ {
+  "source_id": "PV-CASE-20250402",
+  "role": "eval_only",
+  "canonical_url": "https://www.nea.gov.cn/20250402/1c56ebc576504b4e8acb2ae9f5a3ee9b/c.html",
+  "fetched_url": "https://www.nea.gov.cn/20250402/1c56ebc576504b4e8acb2ae9f5a3ee9b/c.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "retrieved_at": "2026-11-11T15:23:17+08:00",
+  "bytes": 10755,
+  "raw_sha256": "5abc8d99e906320b32f7ef050a100c1f52c2e6c18ef7bfadc2993984ed9891e8",
+  "raw_path": "raw\\PV-CASE-20250402__case.html",
+  "fetch_ok": true
+ }
+]

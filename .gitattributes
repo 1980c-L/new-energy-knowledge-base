@@ -1,0 +1,2 @@
+# Runtime and frozen bundle hashes are verified byte-for-byte on every clone.
+* -text whitespace=cr-at-eol

@@ -1,0 +1,155 @@
+/* ============================================================
+   新能源知识库 · 对话前端 — 设计令牌（三层结构）
+   Primitive → Semantic → Component
+   组件样式只引用语义层/组件层，不直接写 hex。
+   亮色为默认；深色跟随系统 prefers-color-scheme。
+   ============================================================ */
+
+:root {
+  /* ---------- 1. Primitive ---------- */
+  --p-ink-900: #14181a;
+  --p-ink-800: #22282a;
+  --p-ink-700: #3a4245;
+  --p-ink-600: #556063;
+  --p-ink-500: #67726f;
+  --p-ink-400: #8a9492;
+  --p-ink-300: #b3bcba;
+  --p-ink-200: #dde3e1;
+  --p-ink-100: #edf1ef;
+
+  --p-paper-50: #f6f8f7;
+  --p-paper-100: #eff3f1;
+  --p-paper-200: #e7ecea;
+  --p-white: #ffffff;
+
+  --p-green-700: #0a6b45;
+  --p-green-600: #0e7c50;
+  --p-green-500: #17915f;
+  --p-green-300: #86c7ac;
+  --p-green-100: #e2f3ea;
+  --p-green-50: #f0f9f4;
+
+  --p-amber-600: #8a5a12;
+  --p-amber-100: #faf0db;
+  --p-red-600: #a33a2f;
+  --p-red-100: #fbeae7;
+
+  --p-space-1: 4px;
+  --p-space-2: 8px;
+  --p-space-3: 12px;
+  --p-space-4: 16px;
+  --p-space-5: 20px;
+  --p-space-6: 24px;
+  --p-space-8: 32px;
+  --p-space-10: 40px;
+  --p-space-12: 48px;
+
+  --p-radius-sm: 6px;
+  --p-radius-md: 9px;
+  --p-radius-lg: 12px;
+  --p-radius-xl: 16px;
+  --p-radius-full: 999px;
+
+  --p-font-sans: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --p-font-mono: "SFMono-Regular", "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+  --p-text-xs: 12px;
+  --p-text-sm: 13px;
+  --p-text-base: 14px;
+  --p-text-md: 15px;
+  --p-text-lg: 18px;
+  --p-text-xl: 22px;
+  --p-text-2xl: 28px;
+
+  --p-shadow-sm: 0 1px 2px rgba(20, 24, 26, 0.05);
+  --p-shadow-md: 0 6px 18px rgba(20, 24, 26, 0.07);
+  --p-shadow-lg: 0 18px 48px rgba(20, 24, 26, 0.12);
+
+  --p-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --p-dur-fast: 140ms;
+  --p-dur-base: 220ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --p-paper-50: #0c0f11;
+    --p-paper-100: #101416;
+    --p-paper-200: #161b1e;
+    --p-white: #14191c;
+    --p-ink-900: #e8edea;
+    --p-ink-800: #d5dcd9;
+    --p-ink-700: #b7c0bd;
+    --p-ink-600: #9da8a5;
+    --p-ink-500: #8d9895;
+    --p-ink-400: #6d7875;
+    --p-ink-300: #3b4447;
+    --p-ink-200: #232a2d;
+    --p-ink-100: #1a2023;
+    --p-green-700: #7fe0b4;
+    --p-green-600: #46cf97;
+    --p-green-500: #3ed598;
+    --p-green-300: #2c7a5c;
+    --p-green-100: #12271f;
+    --p-green-50: #0f1e18;
+    --p-amber-600: #e0b15f;
+    --p-amber-100: #362912;
+    --p-red-600: #f08a7c;
+    --p-red-100: #3a1d19;
+    --p-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+    --p-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+    --p-shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root {
+  /* ---------- 2. Semantic ---------- */
+  --color-canvas: var(--p-paper-50);
+  --color-surface: var(--p-white);
+  --color-surface-sunken: var(--p-paper-100);
+  --color-surface-hover: var(--p-paper-200);
+
+  --color-text: var(--p-ink-900);
+  --color-text-secondary: var(--p-ink-600);
+  --color-text-tertiary: var(--p-ink-500);
+  --color-text-inverse: var(--p-paper-50);
+
+  --color-border: var(--p-ink-200);
+  --color-border-strong: var(--p-ink-300);
+
+  --color-accent: var(--p-green-600);
+  --color-accent-hover: var(--p-green-700);
+  --color-accent-soft: var(--p-green-100);
+  --color-accent-wash: var(--p-green-50);
+
+  --color-warn: var(--p-amber-600);
+  --color-warn-soft: var(--p-amber-100);
+  --color-danger: var(--p-red-600);
+  --color-danger-soft: var(--p-red-100);
+
+  --font-body: var(--p-font-sans);
+  --font-code: var(--p-font-mono);
+
+  /* ---------- 3. Component ---------- */
+  --sidebar-width: 248px;
+  --sidebar-bg: var(--color-surface);
+  --sidebar-item-hover: var(--color-surface-sunken);
+  --sidebar-item-active: var(--color-surface-sunken);
+
+  --thread-max-width: 760px;
+  --composer-shadow: var(--p-shadow-md);
+
+  --msg-assistant-bg: var(--color-surface);
+  --msg-assistant-border: var(--color-border);
+
+  --quote-border: var(--color-border-strong);
+  --quote-bg: var(--color-surface-sunken);
+
+  --badge-bg: var(--color-accent-soft);
+  --badge-fg: var(--color-accent);
+  --badge-warn-bg: var(--color-warn-soft);
+  --badge-warn-fg: var(--color-warn);
+  --badge-danger-bg: var(--color-danger-soft);
+  --badge-danger-fg: var(--color-danger);
+
+  --focus-ring: 0 0 0 2px var(--color-canvas), 0 0 0 3px var(--color-accent);
+}

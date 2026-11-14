@@ -1,0 +1,30 @@
+{
+ "measure": {
+  "chars": 8280,
+  "articles": 43,
+  "article_range": [
+   1,
+   43
+  ],
+  "missing_numbers": [],
+  "has_replacement_char": false
+ },
+ "explain": {
+  "chars": 3884,
+  "paras": 25,
+  "title": "《分布式光伏发电开发建设管理办法》政策解读---国家能源局"
+ },
+ "case": {
+  "chars": 276,
+  "paras": 6,
+  "title": "关于取得备案证及接入方案的项目，但因建设周期原因，未能于5月1日前并网投产后续如何处置的咨询---国家能源局"
+ },
+ "faq": {
+  "pages": 40,
+  "chars": 22837,
+  "question_tokens": 146,
+  "unique_questions": 73,
+  "missing": [],
+  "answers_marker": 73
+ }
+}

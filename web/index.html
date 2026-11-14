@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>新能源知识库 · 分布式光伏政策问答</title>
+<meta name="description" content="分布式光伏政策问答，每条回答都带可回查的原文出处。" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e7c50'/%3E%3Cpath d='M18 6 10 18h5l-1 8 8-12h-5z' fill='%23fff'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<div class="app" id="app">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="side-head">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">⚡</span>
+        <strong>新能源知识库</strong>
+      </div>
+      <button class="icon-btn" id="collapseBtn" title="收起侧栏" aria-label="收起侧栏">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <button class="new-chat" id="newChatBtn">
+      <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      新建对话
+    </button>
+
+    <nav class="conv-list" id="convList" aria-label="历史对话"></nav>
+
+    <div class="side-foot">
+      <span class="dot" aria-hidden="true"></span>
+      <span>本地确定性检索</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn show-sm" id="openSidebarBtn" title="展开侧栏" aria-label="展开侧栏">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <div class="topbar-title" id="topbarTitle">分布式光伏政策问答</div>
+      <div class="topbar-actions">
+        <span class="pill" id="statusPill" hidden></span>
+      </div>
+    </header>
+
+    <div class="thread" id="thread" role="log" aria-live="off">
+      <section class="welcome" id="welcome">
+        <h1 id="welcomeTitle">分布式光伏政策问答</h1>
+        <p class="welcome-sub" id="welcomeSub">每条回答都来自冻结的政策资料，并给出可回查的原文位置。</p>
+        <div class="suggestions" id="suggestions"></div>
+      </section>
+    </div>
+
+    <div class="composer-wrap">
+      <form class="composer" id="composer" autocomplete="off">
+        <textarea id="input" rows="1" placeholder="输入你的问题…" aria-label="输入问题"></textarea>
+        <button type="button" class="stop-btn" id="stopBtn" hidden>停止生成</button>
+        <button class="send-btn" id="sendBtn" type="submit" title="发送" aria-label="发送">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 12.5V3.5M4.5 7L8 3.5 11.5 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+      <p class="composer-hint">
+        <span id="versionHint">资料版本 b-571ebd2d19</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span>本地确定性检索</span>
+      </p>
+    </div>
+  </main>
+</div>
+
+<p id="srStatus" class="sr-only" role="status" aria-live="polite"></p>
+
+<script src="markdown.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
