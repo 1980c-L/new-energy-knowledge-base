@@ -1,8 +1,8 @@
 # 本地运行与 Dify 接入
 
-按顺序看：**先跑命令行（2 分钟）→ 想做网页再配 Dify（10 分钟）→ 版本身份与细节在最后。**
+顺序：命令行 → 网页（可选）→ 版本身份。
 
-## 第一步：命令行，只装 Python
+## 第一步：命令行
 
 只需要 Python 和 jieba，不用 Docker、不用 Dify、不用向量模型，也不用任何付费 API。
 
@@ -11,7 +11,7 @@ python -m pip install -r requirements.txt
 python -B tools/integration176/local176.py --store data/bundles query --question "并网可以附加保证电网安全必要技术要求吗" --mode knowledge --policy-as-of 2025-12-31
 ```
 
-四种查询模式，按你要的答案层次选：
+四种查询模式：
 
 | 模式 | 给你什么 |
 |---|---|
@@ -48,7 +48,7 @@ python -B tools/integration176/local176.py --store data/bundles query --question
 
 `serve.py` 只用于本机预览。仓库没有部署公网服务，「导入就能在线用」这件事在这里不成立。
 
-## 第三步：自己验一遍
+## 第三步：运行检查
 
 ```bash
 python -B -m unittest discover -s tests -p "test_*.py" -v
