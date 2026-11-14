@@ -66,7 +66,7 @@ python -B -m unittest discover -s tests -p "test_*.py" -v
 
 <img src="docs/assets/mobile.png" alt="手机端界面" width="270"> <img src="docs/assets/mobile-dark.png" alt="手机端深色界面" width="270">
 
-截图取自本地会话，非在线站点。[接入说明](docs/RUNNING.md) · [验证结果与限制](docs/VALIDATION.md)
+截图取自本地会话，非在线站点。[接入说明](docs/RUNNING.md) · [验证结果与限制](docs/VALIDATION.md) · [向量检索试作](docs/VECTOR_RETRIEVAL.md)
 
 ## 源码结构
 
@@ -78,6 +78,10 @@ python -B -m unittest discover -s tests -p "test_*.py" -v
 | [`tools/layer34_165/`](tools/layer34_165/) | 本地检索、证据组装与候选版本 |
 | [`data/bundles/`](data/bundles/) | 冻结政策原文、主张、规则与来源映射 |
 | [`tests/`](tests/) | 离线运行检查与网页自动检查脚本 |
+
+## 向量检索试作（离线对照）
+
+2026-11-15 把 548 条原文与 71 条主张写入本机 Weaviate，和 BM25 做同口径对照。结论：真库 top50 与 numpy 25/25 集合一致；单元层向量更强，但生产使用的 claim 层 BM25 仍胜，等权 RRF 反而降低 hit@1。因此生产默认仍是 BM25，向量只作为第二路候选。方法与全部数字见 [向量检索试作](docs/VECTOR_RETRIEVAL.md)。
 
 ## 限制
 
